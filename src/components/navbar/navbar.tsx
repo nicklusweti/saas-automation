@@ -51,11 +51,10 @@ const Navbar = () => {
             </nav>
           </div>
           <div className="flex items-center gap-4">
-            <Button size="sm">{true ? "Dashboard" : "Get Started"}</Button>
-            <div className="block md:hidden">
-              {/* <Button variant="ghost" size="icon">
-                <Menu />
-              </Button> */}
+            <Button className="animate-shimmer transition-colors bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] border text-primary">
+              {true ? "Dashboard" : "Get Started"}
+            </Button>
+            <div className="block md:hidden ">
               <MobileNav />
             </div>
           </div>

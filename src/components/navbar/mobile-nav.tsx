@@ -45,10 +45,7 @@ const MobileNav = () => {
             </Link>
           </SheetTitle>
         </SheetHeader>
-        <div className="w-full flex flex-col space-y-6 mt-8">
-          <Button size="sm" className="w-full">
-            {true ? "Dashboard" : "Get Started"}
-          </Button>
+        <div className="w-full mt-8">
           <nav>
             <ul className="space-y-4">
               {NavLinks.map((link, idx) => {

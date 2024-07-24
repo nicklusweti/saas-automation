@@ -1,15 +1,26 @@
+import { EllipsisVertical } from "lucide-react";
+import { Button } from "../ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
 import Link from "next/link";
 import { NavLinks } from "./nav-links";
-import { Button } from "../ui/button";
-import { Menu } from "lucide-react";
-import MobileNav from "./mobile-nav";
 
-const Navbar = () => {
+const MobileNav = () => {
   return (
-    <header className="fixed top-0 left-0 right-0  border-b z-[1] bg-background/50 backdrop-filter-blur">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="md:flex md:items-center md:gap-12">
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button size="icon" variant="ghost">
+          <EllipsisVertical className="w-5 h-5" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="left" className="w-[400px]">
+        <SheetHeader>
+          <SheetTitle>
             <Link href="/" className="block text-xl font-bold">
               <h1 className="flex items-center">
                 <span>Auto</span>
@@ -32,36 +43,30 @@ const Navbar = () => {
                 <span className="text-muted-foreground">Stream.</span>
               </h1>
             </Link>
-          </div>
-          <div className="hidden md:block">
-            <nav aria-label="Navigation">
-              <ul className="flex items-center gap-6 text-base">
-                {NavLinks.map((link, idx) => {
-                  return (
-                    <Link
-                      key={idx}
-                      href={link.path}
-                      className="hover:text-muted-foreground transition-colors duration-300"
-                    >
-                      {link.title}
-                    </Link>
-                  );
-                })}
-              </ul>
-            </nav>
-          </div>
-          <div className="flex items-center gap-4">
-            <Button size="sm">{true ? "Dashboard" : "Get Started"}</Button>
-            <div className="block md:hidden">
-              {/* <Button variant="ghost" size="icon">
-                <Menu />
-              </Button> */}
-              <MobileNav />
-            </div>
-          </div>
+          </SheetTitle>
+        </SheetHeader>
+        <div className="w-full flex flex-col space-y-6 mt-8">
+          <Button size="sm" className="w-full">
+            {true ? "Dashboard" : "Get Started"}
+          </Button>
+          <nav>
+            <ul className="space-y-4">
+              {NavLinks.map((link, idx) => {
+                return (
+                  <Link
+                    key={idx}
+                    href={link.path}
+                    className="block hover:text-muted-foreground transition-colors duration-300"
+                  >
+                    {link.title}
+                  </Link>
+                );
+              })}
+            </ul>
+          </nav>
         </div>
-      </div>
-    </header>
+      </SheetContent>
+    </Sheet>
   );
 };
-export default Navbar;
+export default MobileNav;
